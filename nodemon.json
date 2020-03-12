@@ -1,0 +1,7 @@
+{
+  "ext": "js,json,njk,gif,jpg,png,svg,webp",
+  "ignore": "./src",
+  "watch": [
+    "./build"
+  ]
+}

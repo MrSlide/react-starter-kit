@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noErrorTruncation": true,
+    "pretty": false,
+    "target": "ES2020",
+    "types" : [
+      "jest",
+      "koa",
+      "node",
+      "react",
+      "react-dom",
+      "styled-components"
+    ],
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "./.vscode",
+    "./build",
+    "./coverage",
+    "./node_modules"
+  ],
+  "include": [
+    "./*.js",
+    "./scripts/**/*.js",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ]
+}

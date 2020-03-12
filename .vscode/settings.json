@@ -1,0 +1,17 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.eslint": true
+  },
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "eslint.enable": true,
+  "eslint.debug": true,
+  "eslint.lintTask.enable": true,
+  "eslint.lintTask.options": "--ext .js,.jsx,.ts,.tsx .",
+  "files.exclude": {
+    ".cache": true,
+    "coverage": true
+  },
+  "javascript.validate.enable": false,
+}
