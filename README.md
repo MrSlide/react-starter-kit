@@ -11,7 +11,6 @@ Some of the features currently implemented have not been properly tested yet and
 - Data pre-fetching
 - State management
 - Localisation
-- Git hooks for code quality enforcement
 - 100% unit test coverage
 - Automatic changelog management via commit messages
 - Fully documented code

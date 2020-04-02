@@ -1,6 +1,7 @@
 {
+  "private": true,
   "name": "react-ssr-boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React application boilerplate featuring SSR, TypeScript and other goodies",
   "engines": {
     "node": ">=13.12.0",
@@ -14,6 +15,7 @@
     "build": "npm run clean && npm run build:scripts && npm run build:images && npm run build:compress",
     "clean": "rm -rf ./build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "release": "standard-version",
     "start:watch": "nodemon index.js",
     "start": "node ./build/index.js",
     "test:types": "tsc --noEmit",
@@ -22,6 +24,24 @@
     "watch:images": "node ./scripts/imagemin.js --watch",
     "watch:scripts": "webpack --watch",
     "watch": "npm run clean && npm run watch:scripts && npm run watch:images"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [2, "always", "sentence-case"]
+    }
   },
   "keywords": [
     "react",
@@ -47,7 +67,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.0.1",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -56,10 +76,12 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
-    "@types/jest": "^25.1.4",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/jest": "^25.1.5",
     "@types/koa": "^2.11.2",
-    "@types/react": "^16.9.27",
-    "@types/react-dom": "^16.9.5",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
     "@types/styled-components": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
@@ -78,13 +100,16 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
     "glob": "^7.1.6",
+    "husky": "^4.2.3",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.1.0",
     "imagemin-webp": "^5.1.0",
-    "jest": "^25.2.4",
+    "jest": "^25.2.7",
+    "lint-staged": "^10.1.1",
     "nodemon": "^2.0.2",
+    "standard-version": "^7.1.0",
     "terser-webpack-plugin": "^2.3.5",
     "typescript": "^3.8.3",
     "webpack": "^5.0.0-beta.14",
