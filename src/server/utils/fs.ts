@@ -26,22 +26,22 @@ export function matchesExt (filePath: string, extension: string[]): boolean {
 export async function readdirRecursive (dirPath: string): Promise<string[]> {
   const entries = await readdir(dirPath)
 
-  return await entries.reduce(async function (
-    prevResult: Promise<string[]>,
-    entry: string
-  ): Promise<string[]> {
-    const fullPath = path.join(dirPath, entry)
-    const acc = await prevResult
-    const stats = await stat(fullPath)
+  return await entries.reduce(
+    async function (prevResult, entry): Promise<string[]> {
+      const fullPath = path.join(dirPath, entry)
+      const acc = await prevResult
+      const stats = await stat(fullPath)
 
-    if (stats.isDirectory()) {
-      const childEntries = await readdirRecursive(fullPath)
+      if (stats.isDirectory()) {
+        const childEntries = await readdirRecursive(fullPath)
 
-      return acc.concat([fullPath], childEntries)
-    }
+        return acc.concat([fullPath], childEntries)
+      }
 
-    acc.push(fullPath)
+      acc.push(fullPath)
 
-    return acc
-  }, Promise.resolve([]))
+      return acc
+    },
+    Promise.resolve([])
+  )
 }

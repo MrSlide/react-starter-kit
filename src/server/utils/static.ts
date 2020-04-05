@@ -50,23 +50,23 @@ export async function initManifest (): Promise<void> {
   const staticDir = path.join(__dirname, STATIC_PATH)
   const entries = await readdirRecursive(staticDir)
 
-  await entries.reduce(async function (
-    acc: Promise<StaticAssetManifest>,
-    entry: string
-  ): Promise<StaticAssetManifest> {
-    const manifest = await acc
-    const skip = await isIgnoredEntry(entry)
+  await entries.reduce(
+    async function (acc, entry): Promise<StaticAssetManifest> {
+      const manifest = await acc
+      const skip = await isIgnoredEntry(entry)
 
-    if (skip === true) {
+      if (skip === true) {
+        return manifest
+      }
+
+      const relativePath = path.relative(staticDir, entry)
+
+      manifest[removeEntryHash(relativePath)] = relativePath
+
       return manifest
-    }
-
-    const relativePath = path.relative(staticDir, entry)
-
-    manifest[removeEntryHash(relativePath)] = relativePath
-
-    return manifest
-  }, Promise.resolve(manifest))
+    },
+    Promise.resolve(manifest)
+  )
 }
 
 /**
