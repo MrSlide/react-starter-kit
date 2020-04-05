@@ -2,6 +2,7 @@ import http from 'http'
 import Koa from 'koa'
 import config from '../common/config'
 import browserTargetContext from './context/browser-target'
+import logContext from './context/log'
 import nonceContext from './context/nonce'
 import renderViewContext from './context/render-view'
 import traceIdContext from './context/trace-id'
@@ -13,6 +14,7 @@ import { initManifest } from './utils/static'
 const app = new Koa()
 
 browserTargetContext(app)
+logContext(app)
 nonceContext(app)
 renderViewContext(app)
 traceIdContext(app)

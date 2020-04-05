@@ -71,7 +71,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.0.1",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
