@@ -1,5 +1,6 @@
 import http from 'http'
 import Koa from 'koa'
+import config from '../common/config'
 import browserTargetContext from './context/browser-target'
 import nonceContext from './context/nonce'
 import renderViewContext from './context/render-view'
@@ -25,7 +26,9 @@ app.use(router)
 async function init (): Promise<void> {
   await initManifest()
 
-  http.createServer(app.callback()).listen(8000) // eslint-disable-line @typescript-eslint/no-misused-promises
+  http.createServer(
+    app.callback() // eslint-disable-line @typescript-eslint/no-misused-promises
+  ).listen(config('serverPort'))
 }
 
 init().catch(console.error)

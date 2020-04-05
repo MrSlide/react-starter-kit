@@ -6,6 +6,7 @@ const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
+const getConfig = require('./scripts/utils/config')
 const { env, isDevelopment } = require('./scripts/utils/env')
 const { dependencies, version } = require('./package.json')
 
@@ -39,10 +40,14 @@ const baseConfig = {
   }
 }
 
+const clientAppConfig = JSON.stringify(getConfig())
+const serverAppConfig = JSON.stringify(getConfig(true))
+
 function getPlugins (bundle) {
   const isServer = bundle === 'server'
   const output = [
     new EnvironmentPlugin({
+      CONFIG: isServer ? serverAppConfig : clientAppConfig,
       NODE_ENV: env
     })
   ]

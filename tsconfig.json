@@ -27,6 +27,7 @@
   ],
   "include": [
     "./*.js",
+    "./config/**/*.js",
     "./scripts/**/*.js",
     "./src/**/*.ts",
     "./src/**/*.tsx"
