@@ -112,7 +112,7 @@
     "imagemin-svgo": "^7.1.0",
     "imagemin-webp": "^5.1.0",
     "jest": "^25.2.7",
-    "lint-staged": "^10.1.1",
+    "lint-staged": "^10.1.2",
     "nodemon": "^2.0.2",
     "standard-version": "^7.1.0",
     "terser-webpack-plugin": "^2.3.5",
