@@ -1,3 +1,6 @@
 module.exports = {
-  _serverPort: 8080
+  _server: {
+    maxProcesses: 1,
+    port: 8080
+  }
 }
