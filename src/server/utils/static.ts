@@ -22,7 +22,7 @@ export async function isIgnoredEntry (filePath: string): Promise<Boolean> {
 }
 
 /**
- * Remove a 20 character hash from a file name.
+ * Remove a 8 character hash from a file name.
  *
  * @param filePath - A file path containing a hash.
  * @private
