@@ -2,7 +2,7 @@ import type Koa from 'koa'
 import log from '../utils/log'
 import type winston from 'winston'
 
-export function getLogger (): winston.Logger {
+function getLogger (): winston.Logger {
   const req = this.req
   const existingLogger = req.log
 

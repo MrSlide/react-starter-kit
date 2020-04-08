@@ -15,7 +15,7 @@ const njk = new nunjucks.Environment(
 
 njk.addFilter('fromManifest', getAssetUrl)
 
-export function render (view: string, ctx?: object): string {
+function render (view: string, ctx?: object): string {
   const output = njk.render(view, ctx)
 
   this.body = output

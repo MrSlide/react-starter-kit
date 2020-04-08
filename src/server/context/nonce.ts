@@ -1,7 +1,7 @@
 import { nonce } from '../utils/csp'
 import type Koa from 'koa'
 
-export function getNonce (): string {
+function getNonce (): string {
   return nonce(this.res)
 }
 

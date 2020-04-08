@@ -6,7 +6,7 @@ const modernTargets = {
   browsers: ['since 2020']
 }
 
-export function getBrowserTarget (): string {
+function getBrowserTarget (): string {
   const req = this.req
   const existingBrowserTarget = req.browserTarget
 

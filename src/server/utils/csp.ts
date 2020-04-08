@@ -4,14 +4,14 @@ import type http from 'http'
 /**
  * Generate a nonce string.
  *
- * @public
+ * @private
  */
-export function generateNonce (): string {
+function generateNonce (): string {
   return crypto.randomBytes(16).toString('hex')
 }
 
 /**
- * Get the existing nonce associated with a server response.
+ * Get the nonce associated with a server response.
  * If one doesn't exist yet, a new one will be created.
  *
  * @param res - The server response object the nonce relates to.

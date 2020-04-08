@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import type Koa from 'koa'
 
-export function getTraceId (): string {
+function getTraceId (): string {
   const req = this.req
   const existingTraceId = req.traceId
 

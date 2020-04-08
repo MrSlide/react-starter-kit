@@ -2,7 +2,7 @@ import { deepFreeze } from '../utils/object'
 
 const config = deepFreeze(JSON.parse(process.env.CONFIG))
 
-export function tokenizeKey (key: string): string[] {
+function tokenizeKey (key: string): string[] {
   return key.split('.')
 }
 

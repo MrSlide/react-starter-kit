@@ -1,7 +1,7 @@
 import type Koa from 'koa'
 import render from '../../render'
 
-export function injectStyleTagNonce (styleTags: string, nonce: string): string {
+function injectStyleTagNonce (styleTags: string, nonce: string): string {
   return styleTags.replace(/(?<=<style)/gm, ` nonce="${nonce}"`)
 }
 
