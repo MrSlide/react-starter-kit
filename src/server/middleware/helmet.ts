@@ -1,9 +1,9 @@
 import helmet from 'koa-helmet'
-import { isDev } from '../../common/utils/app'
+import { IS_DEV } from '../../common/constants/env'
 import { nonce } from '../utils/csp'
 import type http from 'http'
 
-export function getNonce (req: http.IncomingMessage, res: http.ServerResponse): string {
+function getNonce (req: http.IncomingMessage, res: http.ServerResponse): string {
   return `'nonce-${nonce(res)}'`
 }
 
@@ -16,7 +16,7 @@ export default helmet({
       ],
       blockAllMixedContent: true
     },
-    reportOnly: isDev
+    reportOnly: IS_DEV
   },
   frameguard: true,
   hidePoweredBy: true,
