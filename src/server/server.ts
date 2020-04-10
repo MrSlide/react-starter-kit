@@ -10,7 +10,7 @@ import helmetMiddleware from './middleware/helmet'
 import responseTimeMiddleware from './middleware/response-time'
 import router, { rewrites } from './router'
 import log from './utils/log'
-import { initManifest } from './utils/static'
+import { init as initManifest } from './utils/static'
 
 /**
  * Apply the context helpers to the Koa application.
@@ -49,6 +49,15 @@ export function applyRouting (app: Koa): void {
 }
 
 /**
+ * Initialize the dependencies of the application.
+ *
+ * @private
+ */
+export async function initDependencies (): Promise<void> {
+  await initManifest()
+}
+
+/**
  * Initialize the Koa application and start listening for requests.
  *
  * @public
@@ -61,7 +70,7 @@ export default async function init (): Promise<void> {
   applyMiddleware(app)
   applyRouting(app)
 
-  await initManifest()
+  await initDependencies()
 
   http.createServer(
     app.callback() // eslint-disable-line @typescript-eslint/no-misused-promises
