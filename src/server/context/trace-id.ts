@@ -16,6 +16,12 @@ function getTraceId (): string {
   return traceId
 }
 
+declare module 'koa' {
+  interface Context {
+    traceId: string
+  }
+}
+
 export default function setup (app: Koa): void {
   Object.defineProperty(app.context, 'traceId', {
     enumerable: true,

@@ -19,6 +19,12 @@ function getLogger (): winston.Logger {
   return logger
 }
 
+declare module 'koa' {
+  interface Context {
+    log: winston.Logger
+  }
+}
+
 export default function setup (app: Koa): void {
   Object.defineProperty(app.context, 'log', {
     get: getLogger

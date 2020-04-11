@@ -23,6 +23,12 @@ function getBrowserTarget (): string {
   return browserTarget
 }
 
+declare module 'koa' {
+  interface Context {
+    browserTarget: string
+  }
+}
+
 export default function setup (app: Koa): void {
   Object.defineProperty(app.context, 'browserTarget', {
     enumerable: true,

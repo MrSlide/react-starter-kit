@@ -24,6 +24,12 @@ function render (view: string, ctx?: object): string {
   return output
 }
 
+declare module 'koa' {
+  interface Context {
+    render: typeof render
+  }
+}
+
 export default function setup (app: Koa): void {
   Object.defineProperty(app.context, 'render', {
     value: render
