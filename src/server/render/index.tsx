@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
-import App from '../../common/components/app'
+import App from '../../common/components'
 
 interface ServerRenderContent {
   content: string

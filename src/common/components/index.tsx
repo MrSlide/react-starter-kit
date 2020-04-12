@@ -1,5 +1,5 @@
 import React, { ReactElement, StrictMode } from 'react'
-import GlobalStyles from '../providers/global-styles'
+import GlobalStyles from './styles/global'
 
 function App (): ReactElement {
   return (
