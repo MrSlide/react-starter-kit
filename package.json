@@ -75,6 +75,8 @@
     "nunjucks": "^3.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.0",
     "uuid": "^7.0.3",
     "winston": "^3.2.1"
@@ -93,6 +95,7 @@
     "@types/node-polyglot": "^0.4.34",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",

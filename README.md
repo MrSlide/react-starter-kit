@@ -7,7 +7,6 @@ Some of the features currently implemented have not been properly tested yet and
 - React Router
 - Lazy route loading
 - Data pre-fetching
-- State management
 - Localisation
 - 100% unit test coverage
 - Fully documented code

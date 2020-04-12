@@ -16,6 +16,7 @@
       "node",
       "react",
       "react-dom",
+      "react-redux",
       "styled-components"
     ],
     "resolveJsonModule": true

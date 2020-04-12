@@ -13,6 +13,9 @@
 </head>
 <body>
   <div id="app">{{ bodyContent | safe }}</div>
-  <script nonce="{{ nonce }}" src="{{ entryScript | fromManifest }}" />
+  <script nonce="{{ nonce }}">
+    window.__initial_state__ = {{ state | dump | safe }};
+  </script>
+  <script nonce="{{ nonce }}" src="{{ entryScript | fromManifest }}" ></script>
 </body>
 </html>
