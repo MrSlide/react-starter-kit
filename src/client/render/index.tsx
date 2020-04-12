@@ -1,7 +1,17 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import App from '../../common/components'
+import type { Props } from '../../common/components'
 
-export default function render (): void {
-  ReactDom.hydrate(<App />, document.getElementById('app'))
+/**
+ * Render the application.
+ *
+ * @param props - The initial props.
+ * @public
+ */
+export default function render (props: Props): void {
+  ReactDom.hydrate(
+    <App {...props} />,
+    document.getElementById('app')
+  )
 }

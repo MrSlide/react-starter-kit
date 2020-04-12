@@ -7,7 +7,7 @@ function injectStyleTagNonce (styleTags: string, nonce: string): string {
 
 export default function main (ctx: Koa.Context): void {
   const { browserTarget, nonce } = ctx
-  const { content, styleTags } = render()
+  const { content, styleTags } = render({})
   const entryScript = `/scripts/${browserTarget}.js`
 
   ctx.render('main.njk', {
