@@ -12,7 +12,7 @@
     "build:compress": "node ./scripts/compress.js",
     "build:images": "node ./scripts/imagemin.js",
     "build:scripts": "webpack",
-    "build": "npm run clean && npm run build:scripts && npm run build:images && npm run build:compress",
+    "build": "npm run clear && npm run build:scripts && npm run build:images && npm run build:compress",
     "clear:build": "rm -rf ./build",
     "clear:cache": "rm -rf ./.cache && rm -rf ./node_modules/.cache",
     "clear": "npm run clear:build && npm run clear:cache",
@@ -25,7 +25,7 @@
     "test": "npm run test:types && npm run test:units",
     "watch:images": "node ./scripts/imagemin.js --watch",
     "watch:scripts": "webpack --watch",
-    "watch": "npm run clean && npm run watch:scripts && npm run watch:images"
+    "watch": "npm run clear && npm run watch:scripts && npm run watch:images"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx"
