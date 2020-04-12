@@ -13,7 +13,9 @@
     "build:images": "node ./scripts/imagemin.js",
     "build:scripts": "webpack",
     "build": "npm run clean && npm run build:scripts && npm run build:images && npm run build:compress",
-    "clean": "rm -rf ./build",
+    "clear:build": "rm -rf ./build",
+    "clear:cache": "rm -rf ./.cache && rm -rf ./node_modules/.cache",
+    "clear": "npm run clear:build && npm run clear:cache",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "release": "standard-version",
     "start:watch": "nodemon index.js",
@@ -118,9 +120,8 @@
     "lint-staged": "^10.1.3",
     "nodemon": "^2.0.3",
     "standard-version": "^7.1.0",
-    "terser-webpack-plugin": "^2.3.5",
     "typescript": "^3.8.3",
-    "webpack": "^5.0.0-beta.14",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
 }

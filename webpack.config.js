@@ -4,11 +4,10 @@ require('./env')
 
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const getConfig = require('./scripts/utils/config')
 const { env, isDevelopment } = require('./scripts/utils/env')
-const { dependencies, version } = require('./package.json')
+const { dependencies } = require('./package.json')
 
 const browserlistTargets = {
   legacy: '> 0.5%',
@@ -16,35 +15,77 @@ const browserlistTargets = {
   node: 'current node'
 }
 const externals = Object.keys(dependencies)
-const cacheDirectory = path.join(__dirname, '.cache/webpack')
+const cacheDirectory = path.join(__dirname, '.cache')
 const baseConfig = {
   bail: true,
-  cache: {
-    cacheDirectory,
-    type: 'filesystem',
-    version
-  },
   devtool: 'source-map',
   mode: isDevelopment ? 'development' : 'production',
-  optimization: {
-    minimizer: [new TerserPlugin({
-      cache: path.join(cacheDirectory, 'terser'),
-      extractComments: false,
-      sourceMap: true
-    })],
-    nodeEnv: isDevelopment ? 'development' : 'production',
-    noEmitOnErrors: true
+  node: {
+    __dirname: false,
+    __filename: false
   },
   resolve: {
-    extensions: ['.wasm', '.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json']
   }
 }
 
 const clientAppConfig = JSON.stringify(getConfig())
 const serverAppConfig = JSON.stringify(getConfig(true))
 
+/**
+ * Verify if the bundle being built is for a server environment.
+ *
+ * @param {string} bundle - The type of bundle being built.
+ * @private
+ */
+function getIsServer (bundle) {
+  return bundle === 'server'
+}
+
+/**
+ * Verify if a module should be loaded externally.
+ *
+ * @param {object} context
+ * @param {string} request
+ * @param {function} cb
+ * @private
+ */
+function externalizeModules (context, request, cb) {
+  if (externals.includes(request)) {
+    return cb(null, 'commonjs ' + request)
+  }
+
+  cb()
+}
+
+/**
+ * Get the bundle output file name.
+ *
+ * @param {string} bundle - The type of bundle being built.
+ * @private
+ */
+function getBundleFilename (bundle) {
+  const isServer = getIsServer(bundle)
+
+  if (isServer) {
+    return 'index.js'
+  }
+
+  if (isDevelopment) {
+    return `${bundle}.js`
+  }
+
+  return `${bundle}-[contenthash:8].js`
+}
+
+/**
+ * Get the Webpack plugins to be used to build the bundle.
+ *
+ * @param {string} bundle - The type of bundle being built.
+ * @private
+ */
 function getPlugins (bundle) {
-  const isServer = bundle === 'server'
+  const isServer = getIsServer(bundle)
   const output = [
     new EnvironmentPlugin({
       CONFIG: isServer ? serverAppConfig : clientAppConfig,
@@ -61,30 +102,14 @@ function getPlugins (bundle) {
   return output
 }
 
-function externalizeModules ({ context, request }, cb) {
-  if (externals.includes(request)) {
-    return cb(null, 'commonjs ' + request)
-  }
-
-  cb()
-}
-
-function getBundleFilename (bundle) {
-  const isServer = bundle === 'server'
-
-  if (isServer) {
-    return 'index.js'
-  }
-
-  if (isDevelopment) {
-    return `${bundle}.js`
-  }
-
-  return `${bundle}-[contenthash].js`
-}
-
+/**
+ * Get the Webpack configuration for the bundle.
+ *
+ * @param {string} bundle - The type of bundle being built.
+ * @private
+ */
 function getBundleConfig (bundle) {
-  const isServer = bundle === 'server'
+  const isServer = getIsServer(bundle)
 
   return {
     ...baseConfig,
@@ -100,7 +125,6 @@ function getBundleConfig (bundle) {
           use: {
             loader: 'babel-loader',
             options: {
-              cacheCompression: false,
               cacheDirectory: path.join(cacheDirectory, 'babel-loader'),
               caller: {
                 targets: browserlistTargets[bundle]
@@ -111,14 +135,8 @@ function getBundleConfig (bundle) {
       ]
     },
     name: bundle,
-    node: {
-      __dirname: false,
-      __filename: false,
-      global: false
-    },
     output: {
       filename: getBundleFilename(bundle),
-      hashDigestLength: 8,
       path: path.join(__dirname, `build${isServer ? '' : '/static/scripts'}`)
     },
     plugins: getPlugins(bundle),
