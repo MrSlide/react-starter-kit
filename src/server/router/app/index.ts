@@ -4,6 +4,6 @@ import appController from '../../controllers/app'
 
 const router = new Router()
 
-router.all('/(.*)', appController, compress)
+router.all(':relativeUrl(.*)?', appController, compress)
 
 export default router
