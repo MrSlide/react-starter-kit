@@ -4,7 +4,7 @@ require('./env')
 
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
-const { EnvironmentPlugin } = require('webpack')
+const { DefinePlugin, EnvironmentPlugin } = require('webpack')
 const getConfig = require('./scripts/utils/config')
 const { env, isDevelopment } = require('./scripts/utils/env')
 const { dependencies } = require('./package.json')
@@ -97,6 +97,10 @@ function getPlugins (bundle) {
     output.push(new CopyPlugin([
       { from: './src/server/views', to: 'views' }
     ]))
+  } else {
+    output.push(new DefinePlugin({
+      __webpack_nonce__: 'window.__webpack_nonce__'
+    }))
   }
 
   return output
