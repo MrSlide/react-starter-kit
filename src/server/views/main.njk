@@ -1,18 +1,18 @@
 <!doctype html>
-<html class="no-js" lang="{{ pageLang | default('en-GB') }}">
+<html class="no-js" lang="{{ lang | default('en-GB') }}">
 <head>
-  <meta charset="{{ pageCharset | default('utf-8') }}">
+  <meta charset="utf-8">
   <title>{{ pageTitle | default('') }}</title>
   {% if pageDescription %}<meta name="description" content="{{ pageDescription }}">{% endif %}
-  <meta name="viewport" content="{{ pageViewport | default('width=device-width, initial-scale=1') }}">
-  <script{% if nonce %} nonce="{{ nonce }}"{% endif %}>
-    {% if nonce %}window.__webpack_nonce__ = '{{ nonce }}';{% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script nonce="{{ nonce }}">
+    window.__webpack_nonce__ = '{{ nonce }}';
     document.documentElement.classList.remove('no-js');
   </script>
   {{ styleTags | safe }}
 </head>
 <body>
   <div id="app">{{ bodyContent | safe }}</div>
-  <script{% if nonce %} nonce="{{ nonce }}"{% endif %} src="{{ entryScript | fromManifest }}" />
+  <script nonce="{{ nonce }}" src="{{ entryScript | fromManifest }}" />
 </body>
 </html>
