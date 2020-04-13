@@ -5,34 +5,50 @@ const { STATIC_PATH } = require('./constants/paths')
 const { pipeline } = require('./utils/stream')
 const { find } = require('./utils/fs')
 
-const gzip = zlib.createGzip({
+const gzipConfig = {
   level: 9
-})
-const brotli = zlib.createBrotliCompress({
+}
+const brotliConfig = {
   params: {
     [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY
   }
-})
+}
 
+/**
+ * Get a list of assets to compress.
+ *
+ * @private
+ */
 async function getAssets () {
   return await find(STATIC_PATH, '**/*.{js,css,html,svg}')
 }
 
-async function compressAsset (file) {
-  file = path.join(STATIC_PATH, file)
+/**
+ * Compress an asset with Gzip and Brotli.
+ *
+ * @param {string} asset - The relative path of the asset to compress.
+ * @private
+ */
+async function compressAsset (asset) {
+  const filePath = path.join(STATIC_PATH, asset)
 
   await pipeline(
-    createReadStream(file),
-    gzip,
-    createWriteStream(`${file}.gz`)
+    createReadStream(filePath),
+    zlib.createGzip(gzipConfig),
+    createWriteStream(`${filePath}.gz`)
   )
   await pipeline(
-    createReadStream(file),
-    brotli,
-    createWriteStream(`${file}.br`)
+    createReadStream(filePath),
+    zlib.createBrotliCompress(brotliConfig),
+    createWriteStream(`${filePath}.br`)
   )
 }
 
+/**
+ * Find and compress static assets.
+ *
+ * @private
+ */
 async function compress () {
   const assets = await getAssets()
 
