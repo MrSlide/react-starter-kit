@@ -1,24 +1,36 @@
+import 'source-map-support/register'
 import cluster from 'cluster'
 import { cpus } from 'os'
 import listen from './server'
 import config from '../common/config'
 import log from './utils/log'
 
+/**
+ * Create a cluster worker process.
+ *
+ * @private
+ */
+function createWorker (): void {
+  const worker = cluster.fork()
+
+  log.info(`Created worker ${worker.process.pid}`)
+}
+
 if (cluster.isMaster) {
   const numCPUs = cpus().length
   const maxProcesses = config('server.maxProcesses')
   const numProcesses = Math.min(numCPUs, maxProcesses)
-  let initFails = 0
 
   for (let i = 0; i < numProcesses; i++) {
-    cluster.fork()
+    createWorker()
   }
 
-  cluster.on('exit', function (worker) {
-    initFails++
-
-    if (initFails < 3) {
-      cluster.fork()
+  cluster.on('exit', function (worker, exitCode) {
+    if (exitCode !== 0) {
+      log.warn(`Worker ${worker.process.pid} exited. Creating a new worker...`)
+      createWorker()
+    } else {
+      log.warn(`Worker ${worker.process.pid} exited due to an unrecoverable error.`)
     }
   })
 } else {
