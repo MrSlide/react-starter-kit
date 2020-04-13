@@ -2,6 +2,7 @@ import http from 'http'
 import Koa from 'koa'
 import config from '../common/config'
 import browserTargetContext from './context/browser-target'
+import langContext from './context/lang'
 import logContext from './context/log'
 import nonceContext from './context/nonce'
 import renderViewContext from './context/render-view'
@@ -10,6 +11,7 @@ import helmetMiddleware from './middleware/helmet'
 import responseTimeMiddleware from './middleware/response-time'
 import router, { rewrites } from './router'
 import log from './utils/log'
+import { init as initLocalization } from './utils/i18n'
 import { init as initManifest } from './utils/static'
 
 /**
@@ -20,6 +22,7 @@ import { init as initManifest } from './utils/static'
  */
 export function applyContext (app: Koa): void {
   browserTargetContext(app)
+  langContext(app)
   logContext(app)
   nonceContext(app)
   renderViewContext(app)
@@ -54,6 +57,7 @@ export function applyRouting (app: Koa): void {
  * @private
  */
 export async function initDependencies (): Promise<void> {
+  await initLocalization()
   await initManifest()
 }
 

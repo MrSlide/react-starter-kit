@@ -1,12 +1,15 @@
 import React, { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { withT } from '../providers/i18n'
 import { getCount, increment } from '../../store/example'
 import type { ReactElement } from 'react'
+import type { WithTProps } from '../providers/i18n'
 
 interface Props extends
   ReturnType<typeof mapStateToProps>,
-  ReturnType<typeof mapDispatchToProps> {}
+  ReturnType<typeof mapDispatchToProps>,
+  WithTProps {}
 
 /**
  * Map values from state to component props.
@@ -74,11 +77,11 @@ class Counter extends PureComponent<Props> {
    * @public
    */
   render (): ReactElement {
-    const { count } = this.props
+    const { count, t } = this.props
 
     return (
       <div>
-        <h2>Current count: {count}</h2>
+        <h2>{t('example.currentCount', { count })}</h2>
         <button onClick={this.handleIncrementByOne}>+1</button>
         <button onClick={this.handleIncrementByTen}>+10</button>
       </div>
@@ -89,4 +92,4 @@ class Counter extends PureComponent<Props> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Counter)
+)(withT(Counter))

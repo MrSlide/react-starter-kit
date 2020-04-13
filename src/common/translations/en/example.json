@@ -1,0 +1,4 @@
+{
+  "currentCount": "Current count: %{count}",
+  "greeting": "Hello, %{name}!"
+}

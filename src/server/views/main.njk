@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="{{ lang | default('en-GB') }}">
+<html class="no-js" lang="{{ lang }}">
 <head>
   <meta charset="utf-8">
   <title>{{ pageTitle | default('') }}</title>
@@ -15,6 +15,8 @@
   <div id="app">{{ bodyContent | safe }}</div>
   <script nonce="{{ nonce }}">
     window.__initial_state__ = {{ state | dump | safe }};
+    window.__lang__ = '{{ lang }}';
+    window.__phrases__ = {{ phrases | dump | safe }};
   </script>
   <script nonce="{{ nonce }}" src="{{ entryScript | fromManifest }}" ></script>
 </body>

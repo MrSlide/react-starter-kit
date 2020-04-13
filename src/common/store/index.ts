@@ -16,7 +16,7 @@ const reducers = combineReducers({
  * @param initialState - The initial state of the store.
  * @public
  */
-export default function create (initialState: Partial<RootState>): Store {
+export default function create (initialState: Partial<RootState> = {}): Store {
   const store = createStore(reducers, initialState)
 
   return store

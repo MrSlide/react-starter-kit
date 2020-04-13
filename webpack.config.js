@@ -95,6 +95,7 @@ function getPlugins (bundle) {
 
   if (isServer) {
     output.push(new CopyPlugin([
+      { from: './src/common/translations', to: 'translations' },
       { from: './src/server/views', to: 'views' }
     ]))
   } else {

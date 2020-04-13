@@ -1,5 +1,6 @@
 import type Koa from 'koa'
 import render from '../../render'
+import { getPhrases, getT } from '../../utils/i18n'
 import createStore from '../../../common/store'
 
 function injectStyleTagNonce (styleTags: string, nonce: string): string {
@@ -13,16 +14,20 @@ function injectStyleTagNonce (styleTags: string, nonce: string): string {
  * @public
  */
 export default function main (ctx: Koa.Context): void {
-  const { browserTarget, nonce } = ctx
-  const store = createStore({})
+  const { browserTarget, lang, nonce } = ctx
+  const phrases = getPhrases(lang)
+  const store = createStore()
   const { content, styleTags } = render({
-    store
+    store,
+    t: getT(lang)
   })
   const entryScript = `/scripts/${browserTarget}.js`
 
   ctx.render('main.njk', {
     bodyContent: content,
     entryScript,
+    lang,
+    phrases,
     nonce,
     state: store.getState(),
     styleTags: injectStyleTagNonce(styleTags, nonce)
