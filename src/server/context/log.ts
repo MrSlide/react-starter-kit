@@ -2,31 +2,28 @@ import type Koa from 'koa'
 import log from '../utils/log'
 import type winston from 'winston'
 
-function getLogger (): winston.Logger {
-  const req = this.req
-  const existingLogger = req.log
+const namespace = 'log'
 
-  if (typeof existingLogger === 'function') {
-    return existingLogger
+declare module 'koa' {
+  interface Context {
+    [namespace]: winston.Logger
   }
+}
 
+function getLogger (): winston.Logger {
   const logger = log.child({
     traceId: this.traceId
   })
 
-  req.log = logger
+  Object.defineProperty(this, namespace, {
+    value: logger
+  })
 
   return logger
 }
 
-declare module 'koa' {
-  interface Context {
-    log: winston.Logger
-  }
-}
-
 export default function setup (app: Koa): void {
-  Object.defineProperty(app.context, 'log', {
+  Object.defineProperty(app.context, namespace, {
     get: getLogger
   })
 }

@@ -3,6 +3,14 @@ import nunjucks from 'nunjucks'
 import { getAssetUrl } from '../utils/static'
 import type Koa from 'koa'
 
+const namespace = 'render'
+
+declare module 'koa' {
+  interface Context {
+    [namespace]: typeof render
+  }
+}
+
 const viewDirectory = path.join(__dirname, 'views')
 const njk = new nunjucks.Environment(
   new nunjucks.FileSystemLoader(viewDirectory),
@@ -24,14 +32,8 @@ function render (view: string, ctx?: object): string {
   return output
 }
 
-declare module 'koa' {
-  interface Context {
-    render: typeof render
-  }
-}
-
 export default function setup (app: Koa): void {
-  Object.defineProperty(app.context, 'render', {
+  Object.defineProperty(app.context, namespace, {
     value: render
   })
 }

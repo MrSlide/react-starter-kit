@@ -2,6 +2,14 @@ import type Koa from 'koa'
 import config from '../../common/config'
 import { getAvailableLanguages } from '../utils/i18n'
 
+const namespace = 'lang'
+
+declare module 'koa' {
+  interface Context {
+    [namespace]: string
+  }
+}
+
 const defaultLang: string = config('localization.defaultLang')
 const langMapping: object = config('localization.langMapping', {})
 
@@ -45,13 +53,6 @@ function fromHeader (ctx: Koa.Context, availableLangs: string[]): string | undef
  * @private
  */
 function getLang (): string {
-  const req = this.req
-  const existingLang = req.lang
-
-  if (typeof existingLang === 'string') {
-    return existingLang
-  }
-
   const availableLangs = getAvailableLanguages()
   let preferredLang
 
@@ -59,15 +60,12 @@ function getLang (): string {
   preferredLang = preferredLang ?? fromHeader(this, availableLangs)
   preferredLang = langMapping[preferredLang] ?? preferredLang ?? defaultLang
 
-  req.lang = preferredLang
+  Object.defineProperty(this, namespace, {
+    enumerable: true,
+    value: preferredLang
+  })
 
   return preferredLang
-}
-
-declare module 'koa' {
-  interface Context {
-    lang: string
-  }
 }
 
 /**
@@ -77,7 +75,7 @@ declare module 'koa' {
  * @public
  */
 export default function setup (app: Koa): void {
-  Object.defineProperty(app.context, 'lang', {
+  Object.defineProperty(app.context, namespace, {
     enumerable: true,
     get: getLang
   })
