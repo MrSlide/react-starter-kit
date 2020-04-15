@@ -66,6 +66,7 @@
     "deepmerge": "^4.2.2",
     "etag": "^1.8.1",
     "glob": "^7.1.6",
+    "hoist-non-react-statics": "^3.3.2",
     "koa": "^2.11.0",
     "koa-compose": "^4.1.0",
     "koa-compress": "^3.0.0",

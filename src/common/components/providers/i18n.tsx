@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import hoistNonReactStatic from 'hoist-non-react-statics'
 import { getComponentName } from '../../utils/react'
 import type {
   ComponentType,
@@ -49,6 +50,8 @@ export function withT<T> (WrappedComponent: ComponentType<T>): FunctionComponent
       </I18nContext.Consumer>
     )
   }
+
+  hoistNonReactStatic(WithT, WrappedComponent)
 
   if (IS_DEV) {
     WithT.displayName = `withT(${getComponentName(WrappedComponent)})`
