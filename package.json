@@ -62,7 +62,6 @@
   "dependencies": {
     "@koa/router": "^9.0.0",
     "browserslist-useragent": "^3.0.2",
-    "colors": "^1.4.0",
     "core-js": "^3.6.5",
     "deepmerge": "^4.2.2",
     "etag": "^1.8.1",
@@ -77,14 +76,15 @@
     "latinize": "^0.4.1",
     "node-polyglot": "^2.4.0",
     "nunjucks": "^3.2.1",
+    "pino": "^6.2.0",
+    "pino-pretty": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "source-map-support": "^0.5.16",
     "styled-components": "^5.1.0",
-    "uuid": "^7.0.3",
-    "winston": "^3.2.1"
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -98,6 +98,7 @@
     "@types/jest": "^25.2.1",
     "@types/koa": "^2.11.2",
     "@types/node-polyglot": "^0.4.34",
+    "@types/pino": "^6.0.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "@types/react-redux": "^7.1.7",

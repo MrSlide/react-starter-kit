@@ -10,7 +10,7 @@ import traceIdContext from './context/trace-id'
 import helmetMiddleware from './middleware/helmet'
 import responseTimeMiddleware from './middleware/response-time'
 import router, { rewrites } from './router'
-import log from './utils/log'
+import log from '../common/utils/log'
 import { init as initLocalization } from './utils/i18n'
 import { init as initManifest } from './utils/static'
 

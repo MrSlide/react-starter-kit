@@ -89,7 +89,8 @@ function getPlugins (bundle) {
   const output = [
     new EnvironmentPlugin({
       CONFIG: isServer ? serverAppConfig : clientAppConfig,
-      NODE_ENV: env
+      NODE_ENV: env,
+      RUNTIME_ENV: isServer ? 'node' : 'browser'
     })
   ]
 

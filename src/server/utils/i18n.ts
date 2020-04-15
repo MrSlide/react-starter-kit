@@ -12,7 +12,7 @@ import { deepFreeze } from '../../common/utils/object'
 import { toCamelCase } from '../../common/utils/string'
 import { find, readFile } from './fs'
 import type { t } from '../../common/utils/i18n'
-import log from './log'
+import log from '../../common/utils/log'
 
 interface LanguageAssetAttributes {
   langCode: string

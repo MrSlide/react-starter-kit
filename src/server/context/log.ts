@@ -1,17 +1,22 @@
 import type Koa from 'koa'
-import log from '../utils/log'
-import type winston from 'winston'
+import log from '../../common/utils/log'
 
 const namespace = 'log'
 
 declare module 'koa' {
   interface Context {
-    [namespace]: winston.Logger
+    [namespace]: typeof log
   }
 }
 
-function getLogger (): winston.Logger {
-  const logger = log.child({
+function getLogger (): typeof log {
+  const logger = log.extend({
+    headers: this.headers,
+    ip: this.ip,
+    method: this.method,
+    origin: this.origin,
+    path: this.path,
+    query: this.query,
     traceId: this.traceId
   })
 

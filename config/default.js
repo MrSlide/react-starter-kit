@@ -1,3 +1,5 @@
+const { version } = require('../package.json')
+
 module.exports = {
   _localization: {
     defaultLang: 'en',
@@ -9,5 +11,9 @@ module.exports = {
   _server: {
     maxProcesses: 1,
     port: 8080
-  }
+  },
+  logging: {
+    level: 'warn'
+  },
+  version
 }

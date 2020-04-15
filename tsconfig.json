@@ -15,6 +15,7 @@
       "koa",
       "node",
       "node-polyglot",
+      "pino",
       "react",
       "react-dom",
       "react-redux",

@@ -3,7 +3,7 @@ import cluster from 'cluster'
 import { cpus } from 'os'
 import listen from './server'
 import config from '../common/config'
-import log from './utils/log'
+import log from '../common/utils/log'
 
 /**
  * Create a cluster worker process.
