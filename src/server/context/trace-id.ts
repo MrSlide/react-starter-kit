@@ -14,7 +14,7 @@ function getTraceId (): string {
 
   Object.defineProperty(this, 'traceId', {
     enumerable: true,
-    get: traceId
+    value: traceId
   })
 
   return traceId
