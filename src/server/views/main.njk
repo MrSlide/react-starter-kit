@@ -5,6 +5,7 @@
   <title>{{ pageTitle | default('') }}</title>
   {% if pageDescription %}<meta name="description" content="{{ pageDescription }}">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{{ basename }}">
   <script nonce="{{ nonce }}">
     window.__webpack_nonce__ = '{{ nonce }}';
     document.documentElement.classList.remove('no-js');

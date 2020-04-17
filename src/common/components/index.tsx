@@ -1,8 +1,11 @@
 import React, { ReactElement, StrictMode } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
 import I18nProvider from './providers/i18n'
 import GlobalStyles from './styles/global'
-import Counter from './example/counter'
+import Nav from './example/nav'
+import A from './views/a'
+import B from './views/b'
 import type { Store } from 'redux'
 import type { t } from '../utils/i18n'
 
@@ -25,7 +28,11 @@ function App (props: Props): ReactElement {
       <GlobalStyles />
       <I18nProvider t={t}>
         <ReduxProvider store={store}>
-          <Counter />
+          <Nav />
+          <Switch>
+            <Route component={A} path='/a' />
+            <Route component={B} path='/b' />
+          </Switch>
         </ReduxProvider>
       </I18nProvider>
     </StrictMode>

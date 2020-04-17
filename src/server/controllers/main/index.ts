@@ -2,6 +2,11 @@ import type Koa from 'koa'
 import render from '../../render'
 import { getPhrases, getT } from '../../utils/i18n'
 import createStore from '../../../common/store'
+import config from '../../../common/config'
+import { join } from '../../../common/utils/routing'
+
+const { mainPath, rootPath } = config('routing')
+const basePath = join(rootPath, mainPath)
 
 function injectStyleTagNonce (styleTags: string, nonce: string): string {
   return styleTags.replace(/(?<=<style)/gm, ` nonce="${nonce}"`)
@@ -17,15 +22,20 @@ export default function main (ctx: Koa.Context): void {
   const { browserTarget, lang, nonce } = ctx
   const phrases = getPhrases(lang)
   const store = createStore()
-  const { content, styleTags } = render({
+  const renderProps = {
     store,
     t: getT(lang)
-  })
-  const entryScript = `/scripts/${browserTarget}.js`
+  }
+  const renderCtx = {
+    basename: basePath,
+    url: join(rootPath, ctx.url)
+  }
+  const { content, styleTags } = render(renderProps, renderCtx)
 
   ctx.render('main.njk', {
+    basename: basePath,
     bodyContent: content,
-    entryScript,
+    entryScript: `/scripts/${browserTarget}.js`,
     lang,
     phrases,
     nonce,
