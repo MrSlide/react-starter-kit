@@ -2,13 +2,11 @@ import compose from 'koa-compose'
 import mount from 'koa-mount'
 import rewrite from 'koa-rewrite'
 import Router from '@koa/router'
+import config from '../../common/config'
 import staticRouter from './static'
-import appRouter from './app'
-import {
-  APP_MOUNT_PATH,
-  ROOT_MOUNT_PATH,
-  STATIC_MOUNT_PATH
-} from '../constants/paths'
+import mainRouter from './main'
+
+const { mainPath, rootPath, staticPath } = config('routing')
 
 export const rewrites = compose([
   rewrite('/favicon.ico', '/static/favicon.ico')
@@ -16,10 +14,10 @@ export const rewrites = compose([
 
 const router = new Router()
 
-router.use(STATIC_MOUNT_PATH, staticRouter.routes(), staticRouter.allowedMethods())
-router.use(APP_MOUNT_PATH, appRouter.routes(), appRouter.allowedMethods())
+router.use(staticPath, staticRouter.routes(), staticRouter.allowedMethods())
+router.use(mainPath, mainRouter.routes(), mainRouter.allowedMethods())
 
 export default mount(
-  ROOT_MOUNT_PATH,
+  rootPath,
   compose([router.routes(), router.allowedMethods()])
 )

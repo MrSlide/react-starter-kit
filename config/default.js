@@ -15,5 +15,10 @@ module.exports = {
   logging: {
     level: 'warn'
   },
+  routing: {
+    rootPath: '/',
+    mainPath: '/',
+    staticPath: '/static'
+  },
   version
 }

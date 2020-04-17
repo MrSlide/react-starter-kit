@@ -1,11 +1,13 @@
 import { find } from './fs'
-import { STATIC_ASSETS_PATH, STATIC_MOUNT_PATH } from '../constants/paths'
+import config from '../../common/config'
+import { STATIC_ASSETS_PATH } from '../constants/paths'
 
 interface StaticAssetManifest {
   [propName: string]: string
 }
 
 const manifest: StaticAssetManifest = {}
+const staticPath: string = config('routing.staticPath')
 
 /**
  * Remove a 8 character hash from a file name.
@@ -71,5 +73,5 @@ export function getAssetUrl (asset: string): string {
     throw new ReferenceError(`The asset '${asset}' does not exist in the manifest`)
   }
 
-  return `${STATIC_MOUNT_PATH}/${assetPath}`
+  return `${staticPath}/${assetPath}`
 }
