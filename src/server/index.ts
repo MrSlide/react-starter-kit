@@ -1,7 +1,7 @@
 import 'source-map-support/register'
 import cluster from 'cluster'
 import { cpus } from 'os'
-import listen from './server'
+import init from './main'
 import config from '../common/config'
 import log from '../common/utils/log'
 
@@ -34,7 +34,7 @@ if (cluster.isMaster) {
     }
   })
 } else {
-  listen().catch(function (err) {
+  init().catch(function (err) {
     log.error(err)
     cluster.worker.kill()
   })
