@@ -5,16 +5,15 @@ require('./env')
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const { DefinePlugin, EnvironmentPlugin } = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const getConfig = require('./scripts/utils/config')
 const { env, isDevelopment } = require('./scripts/utils/env')
-const { dependencies } = require('./package.json')
 
 const browserlistTargets = {
   legacy: '> 0.5%',
   modern: 'since 2020',
   node: 'current node'
 }
-const externals = Object.keys(dependencies)
 const cacheDirectory = path.join(__dirname, '.cache')
 const baseConfig = {
   bail: true,
@@ -40,22 +39,6 @@ const serverAppConfig = JSON.stringify(getConfig(true))
  */
 function getIsServer (bundle) {
   return bundle === 'server'
-}
-
-/**
- * Verify if a module should be loaded externally.
- *
- * @param {object} context
- * @param {string} request
- * @param {function} cb
- * @private
- */
-function externalizeModules (context, request, cb) {
-  if (externals.includes(request)) {
-    return cb(null, 'commonjs ' + request)
-  }
-
-  cb()
 }
 
 /**
@@ -122,7 +105,7 @@ function getBundleConfig (bundle) {
     entry: {
       [bundle]: `./src/${isServer ? 'server' : 'client'}/index.ts`
     },
-    externals: isServer ? externalizeModules : [],
+    externals: isServer ? nodeExternals() : {},
     module: {
       rules: [
         {

@@ -60,6 +60,7 @@
   "author": "Luis Rodrigues",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "@koa/router": "^9.0.0",
     "browserslist-useragent": "^3.0.2",
     "core-js": "^3.6.5",
@@ -134,6 +135,7 @@
     "standard-version": "^7.1.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
   }
 }
