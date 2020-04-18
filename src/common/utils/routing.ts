@@ -17,7 +17,7 @@ export function normalizePath (path: string): string {
  *
  * @param paths - The paths to be joined.
  */
-export function join (...paths: string[]): string {
+export function joinPaths (...paths: string[]): string {
   return normalizePath(
     paths.reduce(function (acc, path): string {
       return `${acc}/${path}`

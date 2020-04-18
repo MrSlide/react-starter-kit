@@ -13,6 +13,7 @@ function getConfig (api) {
     plugins: [
       '@babel/plugin-transform-runtime',
       '@babel/plugin-syntax-dynamic-import',
+      '@loadable/babel-plugin',
       ['babel-plugin-styled-components', {
         displayName: isDevelopment,
         minify: !isDevelopment,

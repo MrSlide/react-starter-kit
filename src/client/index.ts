@@ -1,3 +1,4 @@
+import './utils/webpack'
 import render from './render'
 import createStore from '../common/store'
 import { getT } from '../common/utils/i18n'

@@ -1,15 +1,13 @@
 <!doctype html>
-<html class="no-js" lang="{{ lang }}">
+<html class="no-js" lang="{{ lang }}" data-nonce="{{ nonce }}" data-bundle-base="{{ bundleBasePath }}">
 <head>
   <meta charset="utf-8">
   <title>{{ pageTitle | default('') }}</title>
   {% if pageDescription %}<meta name="description" content="{{ pageDescription }}">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="{{ basename }}">
-  <script nonce="{{ nonce }}">
-    window.__webpack_nonce__ = '{{ nonce }}';
-    document.documentElement.classList.remove('no-js');
-  </script>
+  <base href="{{ basePath }}">
+  <script nonce="{{ nonce }}">document.documentElement.classList.remove('no-js');</script>
+  {{ linkTags | safe }}
   {{ styleTags | safe }}
 </head>
 <body>
@@ -19,6 +17,6 @@
     window.__lang__ = '{{ lang }}';
     window.__phrases__ = {{ phrases | dump | safe }};
   </script>
-  <script nonce="{{ nonce }}" src="{{ entryScript | fromManifest }}" ></script>
+  {{ scriptTags | safe }}
 </body>
 </html>

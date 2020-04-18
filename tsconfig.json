@@ -5,11 +5,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "module": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "node",
     "noErrorTruncation": true,
     "pretty": false,
-    "target": "ES2020",
+    "target": "ESNext",
     "types" : [
       "jest",
       "koa",
@@ -22,7 +22,8 @@
       "react-router-dom",
       "styled-components"
     ],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "sourceMap": true
   },
   "exclude": [
     "./.vscode",

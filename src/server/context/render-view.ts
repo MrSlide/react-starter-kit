@@ -1,6 +1,6 @@
 import path from 'path'
 import nunjucks from 'nunjucks'
-import { getAssetUrl } from '../utils/static'
+import { getAssetPath } from '../utils/static'
 import type Koa from 'koa'
 
 const namespace = 'render'
@@ -21,7 +21,7 @@ const njk = new nunjucks.Environment(
   }
 )
 
-njk.addFilter('fromManifest', getAssetUrl)
+njk.addFilter('fromManifest', getAssetPath)
 
 function render (view: string, ctx?: object): string {
   const output = njk.render(view, ctx)

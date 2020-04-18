@@ -1,6 +1,6 @@
 import { find } from './fs'
 import config from '../../common/config'
-import { join } from '../../common/utils/routing'
+import { joinPaths } from '../../common/utils/routing'
 import { STATIC_ASSETS_PATH } from '../constants/paths'
 
 interface StaticAssetManifest {
@@ -9,7 +9,7 @@ interface StaticAssetManifest {
 
 const manifest: StaticAssetManifest = {}
 const { staticPath, rootPath } = config('routing')
-const baseStaticPath = join(rootPath, staticPath)
+const baseStaticPath = joinPaths(rootPath, staticPath)
 
 /**
  * Remove a 8 character hash from a file name.
@@ -66,7 +66,7 @@ export function getManifest (): Readonly<StaticAssetManifest> {
  * @param asset - The canonical asset path.
  * @public
  */
-export function getAssetUrl (asset: string): string {
+export function getAssetPath (asset: string): string {
   asset = removeSlash(asset)
 
   const assetPath = manifest[asset]
@@ -75,5 +75,5 @@ export function getAssetUrl (asset: string): string {
     throw new ReferenceError(`The asset '${asset}' does not exist in the manifest`)
   }
 
-  return join(baseStaticPath, assetPath)
+  return joinPaths(baseStaticPath, assetPath)
 }
