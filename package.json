@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "description": "React application boilerplate featuring SSR, TypeScript and other goodies",
   "engines": {
-    "node": ">=13.12.0",
-    "npm": ">=6.13.0"
+    "node": ">=14.0.0",
+    "npm": ">=6.14.4"
   },
   "main": "index.js",
   "scripts": {
