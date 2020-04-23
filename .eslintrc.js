@@ -7,6 +7,7 @@ module.exports = {
     node: true
   },
   extends: [
+    'plugin:jest/recommended',
     'standard-with-typescript',
     'standard-react'
   ],
@@ -21,6 +22,7 @@ module.exports = {
     resolveJsonModule: true
   },
   plugins: [
+    'jest',
     'react',
     '@typescript-eslint'
   ],

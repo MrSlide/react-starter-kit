@@ -4,11 +4,9 @@
  * @param obj - The object to freeze.
  * @public
  */
-export function deepFreeze <T> (obj: T): T {
+export default function deepFreeze <T> (obj: T): void {
   if (obj !== null && typeof obj === 'object') {
     Object.values(obj).forEach(deepFreeze)
     Object.freeze(obj)
   }
-
-  return obj
 }

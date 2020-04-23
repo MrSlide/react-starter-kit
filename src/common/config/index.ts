@@ -25,7 +25,7 @@ function tokenizeKey (key: string): string[] {
  */
 export default function get (key: string, defaultValue?: any): any {
   const tokens = tokenizeKey(key)
-  let output = config
+  let output: any = config
 
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i]
