@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 import hoistNonReactStatic from 'hoist-non-react-statics'
-import { getComponentName } from '../../utils/react'
+import getComponentName from '../../utils/react/get-component-name'
 import type {
   ComponentType,
   FunctionComponent,

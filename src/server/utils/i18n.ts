@@ -2,14 +2,14 @@ import path from 'path'
 import deepMerge from 'deepmerge'
 import config from '../../common/config'
 import { TRANSLATION_ASSETS_PATH } from '../constants/paths'
-import { unique } from '../../common/utils/array'
+import { uniq } from 'lodash/array'
 import {
   getLangCodeAttributes,
   getT as getTFn,
   normalizeLangCode
 } from '../../common/utils/i18n'
-import { deepFreeze } from '../../common/utils/object'
-import { toCamelCase } from '../../common/utils/string'
+import deepFreeze from '../../common/utils/object/deep-freeze'
+import { camelCase } from 'lodash/string'
 import { find, readFile } from './fs'
 import type { t } from '../../common/utils/i18n'
 import log from '../../common/utils/log'
@@ -50,7 +50,7 @@ function getAssetAttributes (asset: string): LanguageAssetAttributes {
 
   return {
     langCode: normalizeLangCode(dir),
-    namespace: toCamelCase(name)
+    namespace: camelCase(name)
   }
 }
 
@@ -137,7 +137,7 @@ export function getAvailableLanguages (): string[] {
     return loadedLangs.includes(langMapping[langCode])
   })
 
-  return unique([...loadedLangs, ...mappedLangs])
+  return uniq([...loadedLangs, ...mappedLangs])
 }
 
 /**
