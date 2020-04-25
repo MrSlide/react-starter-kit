@@ -7,6 +7,7 @@ module.exports = {
     'src/**/*.{js,ts,jsx,tsx}'
   ],
   coverageDirectory: 'coverage',
+  coverageReporters: ['lcov'],
   coverageThreshold: {
     global: {
       branches: 100,
