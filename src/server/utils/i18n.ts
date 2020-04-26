@@ -2,7 +2,7 @@ import path from 'path'
 import deepMerge from 'deepmerge'
 import config from '../../common/config'
 import { TRANSLATION_ASSETS_PATH } from '../constants/paths'
-import { uniq } from 'lodash/array'
+import unique from '../../common/utils/array/unique'
 import {
   getLangCodeAttributes,
   getT as getTFn,
@@ -137,7 +137,7 @@ export function getAvailableLanguages (): string[] {
     return loadedLangs.includes(langMapping[langCode])
   })
 
-  return uniq([...loadedLangs, ...mappedLangs])
+  return unique([...loadedLangs, ...mappedLangs])
 }
 
 /**
