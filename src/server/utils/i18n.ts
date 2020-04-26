@@ -9,7 +9,7 @@ import {
   normalizeLangCode
 } from '../../common/utils/i18n'
 import deepFreeze from '../../common/utils/object/deep-freeze'
-import { camelCase } from 'lodash/string'
+import { camelCase } from 'change-case'
 import { find, readFile } from './fs'
 import type { t } from '../../common/utils/i18n'
 import log from '../../common/utils/log'
