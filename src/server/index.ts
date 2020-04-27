@@ -7,8 +7,6 @@ import log from '../common/utils/log'
 
 /**
  * Create a cluster worker process.
- *
- * @private
  */
 function createWorker (): void {
   const worker = cluster.fork()

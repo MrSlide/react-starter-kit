@@ -15,7 +15,6 @@ interface Props extends
  * Map values from state to component props.
  *
  * @param state - The current state of the application.
- * @private
  */
 function mapStateToProps (state) { /* eslint-disable-line @typescript-eslint/explicit-function-return-type */
   return {
@@ -27,7 +26,6 @@ function mapStateToProps (state) { /* eslint-disable-line @typescript-eslint/exp
  * Map action creators to action dispachers as component props.
  *
  * @param dispatch - The store dispatch function.
- * @private
  */
 function mapDispatchToProps (dispatch) { /* eslint-disable-line @typescript-eslint/explicit-function-return-type */
   return bindActionCreators({
@@ -50,8 +48,6 @@ class Counter extends PureComponent<Props> {
 
   /**
    * Handle `increment by one` events.
-   *
-   * @private
    */
   handleIncrementByOne (): void {
     const { increment } = this.props
@@ -61,8 +57,6 @@ class Counter extends PureComponent<Props> {
 
   /**
    * Handle `increment by ten` events.
-   *
-   * @private
    */
   handleIncrementByTen (): void {
     const { increment } = this.props

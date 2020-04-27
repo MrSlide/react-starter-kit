@@ -30,7 +30,6 @@ const tFns = {}
  * Load phrase data from an asset file.
  *
  * @param asset - The asset file to load.
- * @private
  */
 async function loadAsset (asset: string): Promise<object> {
   const assetPath = path.join(TRANSLATION_ASSETS_PATH, asset)
@@ -43,7 +42,6 @@ async function loadAsset (asset: string): Promise<object> {
  * Extract the language and namespace attributes from an asset path.
  *
  * @param asset - The asset path to be parsed.
- * @private
  */
 function getAssetAttributes (asset: string): LanguageAssetAttributes {
   const { dir, name } = path.parse(asset)
@@ -59,7 +57,6 @@ function getAssetAttributes (asset: string): LanguageAssetAttributes {
  *
  * @param langCode - The language code of the phrase data.
  * @param data - The phrase data to be extended.
- * @private
  */
 function extendPhraseData (langCode: string, data: object): object {
   const { lang, region } = getLangCodeAttributes(langCode)
@@ -73,8 +70,6 @@ function extendPhraseData (langCode: string, data: object): object {
 
 /**
  * Removes phrases of languages that are unavailable.
- *
- * @private
  */
 function filterAvailableLanguages (): void {
   if (enabledLangs.length === 0) {
@@ -92,8 +87,6 @@ function filterAvailableLanguages (): void {
 
 /**
  * Load phrase asset data.
- *
- * @private
  */
 async function loadPhrases (): Promise<void> {
   const assets = await find(TRANSLATION_ASSETS_PATH, '*/*.json')
@@ -113,8 +106,6 @@ async function loadPhrases (): Promise<void> {
 
 /**
  * Create translation functions for each available language.
- *
- * @private
  */
 function createTFns (): void {
   const langCodes = Object.keys(phrases)
@@ -128,8 +119,6 @@ function createTFns (): void {
 
 /**
  * Get the list of languages available to use.
- *
- * @private
  */
 export function getAvailableLanguages (): string[] {
   const loadedLangs = Object.keys(phrases)

@@ -8,7 +8,6 @@ const config = deepFreeze(JSON.parse(process.env.CONFIG))
  * index in an array.
  *
  * @param key - The string to tokenize.
- * @private
  */
 function tokenizeKey (key: string): string[] {
   return key.split('.')

@@ -35,7 +35,6 @@ export function increment (amount = 1): ExampleAction {
  * Get the example state slice.
  *
  * @param state - The current state of the application.
- * @private
  */
 function getState (state: RootState): ExampleState {
   return state[namespace]
@@ -55,7 +54,6 @@ export function getCount (state: RootState): ExampleState['count'] {
  *
  * @param state - The example state slice.
  * @param payload - The action payload.
- * @private
  */
 function incrementReducer (state: ExampleState, payload: IncrementCounterPayload): ExampleState {
   const { count } = state

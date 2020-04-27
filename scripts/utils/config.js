@@ -7,7 +7,6 @@ const { CONFIG_PATH } = require('../constants/paths')
  * Creates a deep clone of a given object.
  *
  * @param {object} obj - An object to close.
- * @private
  */
 function clone (obj) {
   return JSON.parse(JSON.stringify(obj))
@@ -17,7 +16,6 @@ function clone (obj) {
  * Load the configuration object for a given namespace.
  *
  * @param {string} namespace - The namespace of the configuration to load.
- * @private
  */
 function loadConfig (namespace) {
   const filePath = path.join(CONFIG_PATH, namespace)
@@ -35,7 +33,6 @@ function loadConfig (namespace) {
  *
  * @param {*} config - A raw configuration object or value to build from.
  * @param {boolean} [isServer] - Set to `true` to include private configuration keys prefixed with underscore.
- * @private
  */
 function cleanConfig (config, isServer = false) {
   if (config && typeof config === 'object') {

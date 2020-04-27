@@ -19,7 +19,6 @@ const langMapping: object = config('localization.langMapping', {})
  *
  * @param ctx - The context of the request.
  * @param availableLangs - The list of available languages.
- * @private
  */
 function fromParams (ctx: Koa.Context, availableLangs: string[]): string | undefined {
   const { params: { lang = null } = {} } = ctx
@@ -36,7 +35,6 @@ function fromParams (ctx: Koa.Context, availableLangs: string[]): string | undef
  *
  * @param ctx - The context of the request.
  * @param availableLangs - The list of available languages.
- * @private
  */
 function fromHeader (ctx: Koa.Context, availableLangs: string[]): string | undefined {
   const langCode = ctx.acceptsLanguages(availableLangs)
@@ -49,8 +47,6 @@ function fromHeader (ctx: Koa.Context, availableLangs: string[]): string | undef
 /**
  * Get the preferred language for the request.
  * If no preferred language is detected, the default will be returned.
- *
- * @private
  */
 function getLang (): string {
   const availableLangs = getAvailableLanguages()

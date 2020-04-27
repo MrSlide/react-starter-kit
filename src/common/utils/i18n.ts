@@ -14,7 +14,6 @@ export type t = Polyglot['t']
  * @param key - The missing translation key.
  * @param opts - Interpolation options.
  * @param langCode - The current language code.
- * @private
  */
 function onMissingKey (key: string, opts: Polyglot.InterpolationOptions, langCode: string): never {
   throw new ReferenceError(`The translation key '${key}' is missing for '${langCode}'`)

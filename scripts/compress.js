@@ -16,8 +16,6 @@ const brotliConfig = {
 
 /**
  * Get a list of assets to compress.
- *
- * @private
  */
 async function getAssets () {
   return await find(STATIC_PATH, '**/*.{js,css,html,svg}')
@@ -27,7 +25,6 @@ async function getAssets () {
  * Compress an asset with Gzip and Brotli.
  *
  * @param {string} asset - The relative path of the asset to compress.
- * @private
  */
 async function compressAsset (asset) {
   const filePath = path.join(STATIC_PATH, asset)
@@ -46,8 +43,6 @@ async function compressAsset (asset) {
 
 /**
  * Find and compress static assets.
- *
- * @private
  */
 async function compress () {
   const assets = await getAssets()

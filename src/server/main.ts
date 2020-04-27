@@ -18,9 +18,8 @@ import { init as initManifest } from './utils/static'
  * Apply the context helpers to the Koa application.
  *
  * @param app - The Koa application to apply the context helpers to.
- * @private
  */
-export function applyContext (app: Koa): void {
+function applyContext (app: Koa): void {
   browserTargetContext(app)
   langContext(app)
   logContext(app)
@@ -33,9 +32,8 @@ export function applyContext (app: Koa): void {
  * Apply the global middleware to the Koa application.
  *
  * @param app - The Koa application to apply the middleware to.
- * @private
  */
-export function applyMiddleware (app: Koa): void {
+function applyMiddleware (app: Koa): void {
   app.use(responseTimeMiddleware)
   app.use(helmetMiddleware)
 }
@@ -44,19 +42,16 @@ export function applyMiddleware (app: Koa): void {
  * Apply the routing to the Koa application.
  *
  * @param app - The Koa application to apply the routing to.
- * @private
  */
-export function applyRouting (app: Koa): void {
+function applyRouting (app: Koa): void {
   app.use(rewrites)
   app.use(router)
 }
 
 /**
  * Initialize the dependencies of the application.
- *
- * @private
  */
-export async function initDependencies (): Promise<void> {
+async function initDependencies (): Promise<void> {
   await initLocalization()
   await initManifest()
 }

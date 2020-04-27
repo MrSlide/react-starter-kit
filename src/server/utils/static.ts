@@ -15,7 +15,6 @@ const baseStaticPath = joinPaths(rootPath, staticPath)
  * Remove a 8 character hash from a file name.
  *
  * @param filePath - A file path containing a hash.
- * @private
  */
 function removeEntryHash (filePath: string): string {
   return filePath.replace(/^(.+)-[a-f0-9]{8}(\.[a-z0-9]+)*$/i, '$1$2')
@@ -25,7 +24,6 @@ function removeEntryHash (filePath: string): string {
  * Remove the slash prefix of a path.
  *
  * @param path - The path to remove the slash from.
- * @private
  */
 function removeSlash (path: string): string {
   return path.replace(/^\//, '')

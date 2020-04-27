@@ -48,7 +48,6 @@ const serverAppConfig = JSON.stringify(getConfig(true))
  * Verify if the bundle being built is for a server environment.
  *
  * @param {string} bundle - The type of bundle being built.
- * @private
  */
 function getIsServer (bundle) {
   return bundle === 'server'
@@ -58,7 +57,6 @@ function getIsServer (bundle) {
  * Get the chunk output file name format.
  *
  * @param {string} bundle - The type of bundle being built.
- * @private
  */
 function getChunkFilename (bundle) {
   const isServer = getIsServer(bundle)
@@ -74,7 +72,6 @@ function getChunkFilename (bundle) {
  * Get the bundle output file name format.
  *
  * @param {string} bundle - The type of bundle being built.
- * @private
  */
 function getBundleFilename (bundle) {
   const isServer = getIsServer(bundle)
@@ -90,7 +87,6 @@ function getBundleFilename (bundle) {
  * Get the Webpack plugins to be used to build the bundle.
  *
  * @param {string} bundle - The type of bundle being built.
- * @private
  */
 function getPlugins (bundle) {
   const isServer = getIsServer(bundle)
@@ -117,7 +113,6 @@ function getPlugins (bundle) {
  * Get the Webpack configuration for the bundle.
  *
  * @param {string} bundle - The type of bundle being built.
- * @private
  */
 function getBundleConfig (bundle) {
   const isServer = getIsServer(bundle)

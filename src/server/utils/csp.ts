@@ -3,8 +3,6 @@ import type http from 'http'
 
 /**
  * Generate a nonce string.
- *
- * @private
  */
 function generateNonce (): string {
   return crypto.randomBytes(16).toString('hex')
