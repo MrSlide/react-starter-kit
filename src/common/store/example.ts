@@ -21,7 +21,6 @@ const INCREMENT_COUNTER = `${namespace}/increment`
  * Create an action to increment the counter by a given amount.
  *
  * @param amount - The amount to increment to the counter.
- * @public
  */
 export function increment (amount = 1): ExampleAction {
   return {
@@ -46,7 +45,6 @@ function getState (state: RootState): ExampleState {
  * Get the current value of the counter.
  *
  * @param state - The current state of the application.
- * @public
  */
 export function getCount (state: RootState): ExampleState['count'] {
   return getState(state).count
@@ -78,7 +76,6 @@ const defaultState = {
  *
  * @param state - The example state slice.
  * @param action - The dispatched action.
- * @public
  */
 export default function reduce (state: ExampleState, action: ExampleAction): ExampleState {
   const { type, payload = {} } = action

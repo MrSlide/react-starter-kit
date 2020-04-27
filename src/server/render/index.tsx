@@ -26,7 +26,6 @@ interface ServerRenderContent {
  * Render the application.
  *
  * @param props - The initial props.
- * @public
  */
 export default function render (props: Props, ctx: RenderContext): ServerRenderContent {
   const {

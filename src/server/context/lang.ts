@@ -72,7 +72,6 @@ function getLang (): string {
  * Set up a base context property on an application instance.
  *
  * @param app - The application instance to update.
- * @public
  */
 export default function setup (app: Koa): void {
   Object.defineProperty(app.context, namespace, {

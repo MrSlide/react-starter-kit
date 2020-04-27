@@ -14,7 +14,6 @@ const reducers = combineReducers({
  * Create a Redux store instance.
  *
  * @param initialState - The initial state of the store.
- * @public
  */
 export default function create (initialState: Partial<RootState> = {}): Store {
   const store = createStore(reducers, initialState)

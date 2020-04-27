@@ -65,7 +65,6 @@ function cleanConfig (config, isServer = false) {
  * Get a configuration for the current environment including default values.
  *
  * @param {boolean} isServer - Set to `true` to include private configuration keys prefixed with underscore.
- * @public
  */
 function getConfig (isServer) {
   const defaultConf = loadConfig('default')

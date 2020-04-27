@@ -18,7 +18,6 @@ if (basePath === '/') {
  * Render the application.
  *
  * @param props - The initial props.
- * @public
  */
 export default function render (props: Props): void {
   loadableReady(function () {

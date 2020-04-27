@@ -24,7 +24,6 @@ const ViewB = loadable(async function () {
  * Application root component.
  *
  * @param props - The component props.
- * @public
  */
 function App (props: Props): ReactElement {
   const { store, t } = props

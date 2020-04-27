@@ -40,7 +40,6 @@ class Counter extends PureComponent<Props> {
    * Create a component instance.
    *
    * @param props - The component props.
-   * @public
    */
   constructor (props) {
     super(props)
@@ -73,8 +72,6 @@ class Counter extends PureComponent<Props> {
 
   /**
    * Render the component.
-   *
-   * @public
    */
   render (): ReactElement {
     const { count, t } = this.props

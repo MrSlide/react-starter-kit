@@ -15,7 +15,6 @@ function generateNonce (): string {
  * If one doesn't exist yet, a new one will be created.
  *
  * @param res - The server response object the nonce relates to.
- * @public
  */
 export function nonce (res: http.ServerResponse): string {
   const response: any = res

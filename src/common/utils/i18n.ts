@@ -26,7 +26,6 @@ function onMissingKey (key: string, opts: Polyglot.InterpolationOptions, langCod
  *
  * @param langCode - The language code of the phrases.
  * @param phrases - Phrases to use for translations.
- * @public
  */
 export function getT (langCode: string, phrases: object): t {
   const polyglot = new Polyglot({
@@ -42,7 +41,6 @@ export function getT (langCode: string, phrases: object): t {
  * Extract the language and region attributes of a language code.
  *
  * @param langCode - The language code to be parsed.
- * @public
  */
 export function getLangCodeAttributes (langCode: string): LangCodeAttributes {
   const [lang, region] = langCode.split('-')
@@ -57,7 +55,6 @@ export function getLangCodeAttributes (langCode: string): LangCodeAttributes {
  * Normalize a language code string to a standard format.
  *
  * @param langCode - The language code string to be normalized.
- * @public
  */
 export function normalizeLangCode (langCode: string): string {
   const { lang, region } = getLangCodeAttributes(langCode)

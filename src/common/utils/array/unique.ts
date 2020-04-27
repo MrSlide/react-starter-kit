@@ -3,7 +3,6 @@
  * The elements will be in the order in which they are found first.
  *
  * @param array - An array to filter.
- * @public
  */
 export default function unique (array: any[]): any[] {
   return Array.from(new Set(array))

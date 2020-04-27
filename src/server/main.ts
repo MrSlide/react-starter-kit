@@ -63,8 +63,6 @@ export async function initDependencies (): Promise<void> {
 
 /**
  * Initialize the Koa application and start listening for requests.
- *
- * @public
  */
 export default async function init (): Promise<void> {
   const app = new Koa()

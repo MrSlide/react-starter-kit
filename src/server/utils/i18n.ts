@@ -144,7 +144,6 @@ export function getAvailableLanguages (): string[] {
  * Get a phrase bundle for a language.
  *
  * @param langCode - The language to get phrases for.
- * @public
  */
 export function getPhrases (langCode: string): object {
   const bundle = phrases[langCode]
@@ -160,7 +159,6 @@ export function getPhrases (langCode: string): object {
  * Get a translation function for a language.
  *
  * @param langCode - The language to get a translation function for.
- * @public
  */
 export function getT (langCode: string): t {
   const fn = tFns[langCode]
@@ -174,8 +172,6 @@ export function getT (langCode: string): t {
 
 /**
  * Initiliaze the localization data and functions.
- *
- * @public
  */
 export async function init (): Promise<void> {
   if (typeof defaultLang !== 'string') {

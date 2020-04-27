@@ -33,8 +33,6 @@ function removeSlash (path: string): string {
 
 /**
  * Initialize the static asset manifest.
- *
- * @public
  */
 export async function init (): Promise<void> {
   const entries = await find(STATIC_ASSETS_PATH, '**/!(*.map|*.br|*.gz)')
@@ -53,8 +51,6 @@ export async function init (): Promise<void> {
 
 /**
  * Get the full static asset manifest.
- *
- * @public
  */
 export function getManifest (): Readonly<StaticAssetManifest> {
   return manifest
@@ -64,7 +60,6 @@ export function getManifest (): Readonly<StaticAssetManifest> {
  * Retrieve the current file path of an asset.
  *
  * @param asset - The canonical asset path.
- * @public
  */
 export function getAssetPath (asset: string): string {
   asset = removeSlash(asset)

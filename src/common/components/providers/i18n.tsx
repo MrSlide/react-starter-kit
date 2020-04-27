@@ -26,7 +26,6 @@ interface ProviderProps extends WithTProps {
  * Provides an i18n context.
  *
  * @param props - Component props.
- * @public
  */
 export default function I18nProvider (props: ProviderProps): ReactElement {
   const { children, t } = props
@@ -38,7 +37,6 @@ export default function I18nProvider (props: ProviderProps): ReactElement {
  * Gives a component a translation function `t`.
  *
  * @param WrappedComponent - The component to wrap.
- * @public
  */
 export function withT<T> (WrappedComponent: ComponentType<T>): FunctionComponent {
   function WithT (props): ReactElement {

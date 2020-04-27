@@ -36,7 +36,6 @@ function injectStyleTagNonce (styleTags: string, nonce: string): string {
  * Handle requests for the main application.
  *
  * @param ctx - The context of the request.
- * @public
  */
 export default function main (ctx: Koa.Context): void {
   const { browserTarget, lang, nonce } = ctx

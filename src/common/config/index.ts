@@ -21,7 +21,6 @@ function tokenizeKey (key: string): string[] {
  *
  * @param key - The key of the configuration value to get,
  * @param defaultValue - A value to return if no value is available.
- * @public
  */
 export default function get (key: string, defaultValue?: any): any {
   const tokens = tokenizeKey(key)
