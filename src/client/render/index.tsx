@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import { loadableReady } from '@loadable/component'
 import { BrowserRouter } from 'react-router-dom'
 import config from '../../common/config'
-import { joinPaths } from '../../common/utils/routing'
+import joinPaths from '../../common/utils/routing/join-paths'
 import App from '../../common/components'
 import type { Props } from '../../common/components'
 

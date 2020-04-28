@@ -5,7 +5,7 @@ import render from '../../render'
 import { getPhrases, getT } from '../../utils/i18n'
 import createStore from '../../../common/store'
 import config from '../../../common/config'
-import { joinPaths } from '../../../common/utils/routing'
+import joinPaths from '../../../common/utils/routing/join-paths'
 import type Koa from 'koa'
 
 const { mainPath, rootPath, staticPath } = config('routing')
