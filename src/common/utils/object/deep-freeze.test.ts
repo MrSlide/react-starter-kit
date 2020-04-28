@@ -38,4 +38,14 @@ describe('Object deepFreeze()', function () {
 
     expect(Object.isFrozen(input[0])).toBe(true)
   })
+
+  test('returns the frozen value', function () {
+    const input = {
+      test: true
+    }
+
+    const output = deepFreeze(input)
+
+    expect(output).toBe(input)
+  })
 })
