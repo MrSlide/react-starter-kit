@@ -8,7 +8,7 @@ import {
   getT as getTFn,
   normalizeLangCode
 } from '../../common/utils/i18n'
-import deepFreeze from '../../common/utils/object/deep-freeze'
+import { deepFreeze } from '../../common/utils/object'
 import { camelCase } from 'change-case'
 import { find, readFile } from './fs'
 import type { t } from '../../common/utils/i18n'

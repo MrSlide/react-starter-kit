@@ -1,4 +1,4 @@
-import deepFreeze from '../utils/object/deep-freeze'
+import { deepFreeze } from '../utils/object'
 
 const config = deepFreeze(JSON.parse(process.env.CONFIG))
 
