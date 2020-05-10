@@ -1,5 +1,5 @@
 import type Koa from 'koa'
-import log from '../../common/utils/log'
+import log from '../logger'
 
 const namespace = 'log'
 
@@ -11,13 +11,15 @@ declare module 'koa' {
 
 function getLogger (): typeof log {
   const logger = log.extend({
-    headers: this.headers,
-    ip: this.ip,
-    method: this.method,
-    origin: this.origin,
-    path: this.path,
-    query: this.query,
-    traceId: this.traceId
+    payload: {
+      headers: this.headers,
+      ip: this.ip,
+      method: this.method,
+      origin: this.origin,
+      path: this.path,
+      query: this.query,
+      traceId: this.traceId
+    }
   })
 
   Object.defineProperty(this, namespace, {
