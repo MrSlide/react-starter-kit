@@ -1,13 +1,13 @@
 import joinPaths from './join-paths'
 import normalizePath from './normalize-path'
-import * as routing from '.'
+import * as url from '.'
 
-describe('Routing utils', function () {
+describe('URL utils', function () {
   test('exports joinPaths()', function () {
-    expect(routing.joinPaths).toBe(joinPaths)
+    expect(url.joinPaths).toBe(joinPaths)
   })
 
   test('exports normalizePath()', function () {
-    expect(routing.normalizePath).toBe(normalizePath)
+    expect(url.normalizePath).toBe(normalizePath)
   })
 })
