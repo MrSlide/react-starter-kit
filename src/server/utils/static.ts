@@ -1,6 +1,6 @@
 import { find } from './fs'
 import config from '../../common/config'
-import joinPaths from '../../common/utils/routing/join-paths'
+import { joinPaths } from '../../common/utils/routing'
 import { STATIC_ASSETS_PATH } from '../constants/paths'
 
 interface StaticAssetManifest {

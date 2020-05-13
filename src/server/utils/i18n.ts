@@ -2,7 +2,7 @@ import path from 'path'
 import deepMerge from 'deepmerge'
 import config from '../../common/config'
 import { TRANSLATION_ASSETS_PATH } from '../constants/paths'
-import unique from '../../common/utils/array/unique'
+import { unique } from '../../common/utils/array'
 import {
   getLangCodeAttributes,
   getT as getTFn,
