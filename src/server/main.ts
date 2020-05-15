@@ -4,7 +4,6 @@ import config from '../common/config'
 import browserTargetContext from './context/browser-target'
 import langContext from './context/lang'
 import logContext from './context/log'
-import nonceContext from './context/nonce'
 import renderViewContext from './context/render-view'
 import traceIdContext from './context/trace-id'
 import helmetMiddleware from './middleware/helmet'
@@ -23,7 +22,6 @@ function applyContext (app: Koa): void {
   browserTargetContext(app)
   langContext(app)
   logContext(app)
-  nonceContext(app)
   renderViewContext(app)
   traceIdContext(app)
 }

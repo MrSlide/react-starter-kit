@@ -37,7 +37,8 @@ function injectStyleTagNonce (styleTags: string, nonce: string): string {
  * @param ctx - The context of the request.
  */
 export default function main (ctx: Koa.Context): void {
-  const { browserTarget, lang, nonce } = ctx
+  const { browserTarget, lang } = ctx
+  const { nonce } = ctx.res
   const bundleBasePath = joinPaths(staticBasePath, 'scripts', browserTarget) + '/'
   const phrases = getPhrases(lang)
   const store = createStore()
