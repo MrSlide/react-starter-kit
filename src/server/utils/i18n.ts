@@ -5,14 +5,14 @@ import { TRANSLATION_ASSETS_PATH } from '../constants/paths'
 import { unique } from '../../common/utils/array'
 import {
   getLangCodeAttributes,
-  getT as getTFn,
+  createT,
   normalizeLangCode
 } from '../../common/utils/i18n'
 import { deepFreeze } from '../../common/utils/object'
 import { camelCase } from 'change-case'
 import { find, readFile } from './fs'
-import type { t } from '../../common/utils/i18n'
 import log from '../logger'
+import type { t } from '../../common/utils/i18n'
 
 interface LanguageAssetAttributes {
   langCode: string
@@ -113,7 +113,7 @@ function createTFns (): void {
   langCodes.forEach(function (langCode) {
     const phrasesBundle = getPhrases(langCode)
 
-    tFns[langCode] = getTFn(langCode, phrasesBundle)
+    tFns[langCode] = createT(langCode, phrasesBundle)
   })
 }
 

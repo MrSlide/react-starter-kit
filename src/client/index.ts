@@ -1,7 +1,7 @@
 import './utils/webpack'
 import render from './render'
 import createStore from '../common/store'
-import { getT } from '../common/utils/i18n'
+import { createT } from '../common/utils/i18n'
 
 declare global {
   interface Window {
@@ -14,5 +14,5 @@ declare global {
 
 render({
   store: createStore(window.__initial_state__),
-  t: getT(window.__lang__, window.__phrases__)
+  t: createT(window.__lang__, window.__phrases__)
 })

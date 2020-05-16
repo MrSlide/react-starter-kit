@@ -8,11 +8,9 @@ import type {
   ReactNode
 } from 'react'
 import { IS_DEV } from '../../constants/env'
-import type { t } from '../../utils/i18n'
+import type { createT } from '../../utils/i18n'
 
-const I18nContext = createContext(null)
-
-I18nContext.displayName = 'I18n'
+type t = ReturnType<typeof createT>
 
 export interface WithTProps {
   readonly t: t
@@ -21,6 +19,10 @@ export interface WithTProps {
 interface ProviderProps extends WithTProps {
   readonly children: ReactNode
 }
+
+const I18nContext = createContext(null)
+
+I18nContext.displayName = 'I18n'
 
 /**
  * Provides an i18n context.
