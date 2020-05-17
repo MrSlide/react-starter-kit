@@ -10,7 +10,7 @@ import helmetMiddleware from './middleware/helmet'
 import responseTimeMiddleware from './middleware/response-time'
 import router, { rewrites } from './router'
 import log from './logger'
-import { init as initLocalization } from './utils/i18n'
+import { init as initLocalization } from './i18n'
 import { init as initManifest } from './utils/static'
 
 /**

@@ -1,6 +1,6 @@
 import type Koa from 'koa'
 import config from '../../common/config'
-import { getAvailableLanguages } from '../utils/i18n'
+import { getAvailableLanguages } from '../i18n'
 
 const namespace = 'lang'
 
