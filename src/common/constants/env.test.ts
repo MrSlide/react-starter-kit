@@ -5,7 +5,7 @@ describe('Env constants', function () {
     beforeAll(function () {
       process.env.NODE_ENV = 'development'
 
-      env = jest.requireActual('./env')
+      env = require('./env')
     })
 
     test('exports the development environment flag', function () {
@@ -19,7 +19,7 @@ describe('Env constants', function () {
     beforeAll(function () {
       process.env.NODE_ENV = 'production'
 
-      env = jest.requireActual('./env')
+      env = require('./env')
     })
 
     test('exports the development environment flag', function () {
@@ -33,7 +33,7 @@ describe('Env constants', function () {
     beforeAll(function () {
       process.env.NODE_ENV = 'test'
 
-      env = jest.requireActual('./env')
+      env = require('./env')
     })
 
     test('exports the development environment flag', function () {

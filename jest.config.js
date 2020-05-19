@@ -10,10 +10,10 @@ module.exports = {
   coverageReporters: ['lcov'],
   coverageThreshold: {
     global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100
+      branches: 75,
+      functions: 50,
+      lines: 45,
+      statements: 45
     }
   },
   resetMocks: true,

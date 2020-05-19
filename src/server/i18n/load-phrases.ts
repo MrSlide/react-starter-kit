@@ -8,18 +8,25 @@ import {
   normalizeLangCode
 } from '../../common/utils/i18n'
 import { deepFreeze } from '../../common/utils/object'
-import config from '../../common/config'
 
 interface LanguageAssetAttributes {
   langCode: string
   namespace: string
 }
 
-interface PhrasesAsset extends LanguageAssetAttributes {
-  data: object
+interface PhrasesNamespace {
+  [namespace: string]: string | PhrasesNamespace
 }
 
-const enabledLangs: string[] = config('localization.enabledLangs', [])
+interface PhrasesBundle {
+  [langCode: string]: {
+    [namespace: string]: PhrasesNamespace
+  }
+}
+
+interface PhrasesAsset extends LanguageAssetAttributes {
+  data: PhrasesNamespace
+}
 
 /**
  * Extract the language and namespace attributes from an asset path.
@@ -52,19 +59,20 @@ async function loadAsset (asset: string): Promise<PhrasesAsset> {
 
 /**
  * Extend phrase data with the data of the base language.
+ * This modified the given phrases bundle.
  *
  * @param phrases - The phrases data bundle.
- * @param langCode - The language code of the phrase data.
- * @param data - The phrase data to be extended.
  */
-function extendPhraseData (phrases: object, langCode: string, data: object): object {
-  const { lang, region } = getLangCodeAttributes(langCode)
+function extendPhraseData (phrases: PhrasesBundle): void {
+  const langCodes = Object.keys(phrases)
 
-  if (typeof region === 'string' && phrases[lang] !== 'undefined') {
-    return deepMerge(phrases[lang], data)
-  }
+  langCodes.forEach(function (langCode) {
+    const { lang, region } = getLangCodeAttributes(langCode)
 
-  return data
+    if (typeof region === 'string' && typeof phrases[lang] !== 'undefined') {
+      phrases[langCode] = deepMerge(phrases[lang], phrases[langCode])
+    }
+  })
 }
 
 /**
@@ -72,9 +80,9 @@ function extendPhraseData (phrases: object, langCode: string, data: object): obj
  *
  * @param phrases - The phrases data bundle.
  */
-function filterAvailableLanguages (phrases: object): object {
-  if (enabledLangs.length === 0) {
-    return
+function filterAvailableLanguages (phrases: PhrasesBundle, enabledLangs?: string[]): PhrasesBundle {
+  if (!Array.isArray(enabledLangs) || enabledLangs.length === 0) {
+    return phrases
   }
 
   const langCodes = Object.keys(phrases)
@@ -92,7 +100,7 @@ function filterAvailableLanguages (phrases: object): object {
 /**
  * Load phrase asset data.
  */
-export default async function loadPhrases (): Promise<object> {
+export default async function loadPhrases (enabledLangs?: string[]): Promise<PhrasesBundle> {
   const assets = await find(TRANSLATION_ASSETS_PATH, '*/*.json')
   const phrases = {}
 
@@ -101,10 +109,12 @@ export default async function loadPhrases (): Promise<object> {
     const { data, langCode, namespace } = await loadAsset(asset)
 
     phrases[langCode] = phrases[langCode] ?? {}
-    phrases[langCode][namespace] = extendPhraseData(phrases, langCode, data)
+    phrases[langCode][namespace] = data
   }
 
+  extendPhraseData(phrases)
+
   return deepFreeze(
-    filterAvailableLanguages(phrases)
+    filterAvailableLanguages(phrases, enabledLangs)
   )
 }

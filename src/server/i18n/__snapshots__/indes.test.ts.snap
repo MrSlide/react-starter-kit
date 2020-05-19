@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Server side i18n getPhrases() returns the phrases for a language 1`] = `
+Object {
+  "testA": Object {
+    "greeting": "Good day, %{name}",
+    "test": "This is a test",
+  },
+  "testB": Object {
+    "bar": "Bar",
+    "foo": "Foo",
+  },
+}
+`;
+
+exports[`Server side i18n getT() throws an error if a specified language is not available 1`] = `"The language 'pt-PT' is not available."`;
+
+exports[`Server side i18n init() loads the phrases 1`] = `
+Object {
+  "testA": Object {
+    "greeting": "Hello, %{name}",
+    "test": "This is a test",
+  },
+  "testB": Object {
+    "bar": "Bar",
+    "foo": "Foo",
+  },
+}
+`;
+
+exports[`Server side i18n init() loads the phrases 2`] = `
+Object {
+  "testA": Object {
+    "greeting": "Good day, %{name}",
+    "test": "This is a test",
+  },
+  "testB": Object {
+    "bar": "Bar",
+    "foo": "Foo",
+  },
+}
+`;

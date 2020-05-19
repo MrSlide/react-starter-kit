@@ -1,4 +1,4 @@
-import { RESPONSE_TIME_HEADER } from '../../common/constants/headers'
+import { RESPONSE_TIME_HEADER } from '../constants/headers'
 import type Koa from 'koa'
 
 export default async function responseTime (ctx: Koa.Context, next: Koa.Next): Promise<void> {

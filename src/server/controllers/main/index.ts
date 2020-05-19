@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { CONTENT_LANGUAGE_HEADER } from '../../constants/headers'
 import { STATIC_ASSETS_PATH } from '../../constants/paths'
 import render from '../../render'
 import { getPhrases, getT } from '../../i18n'
@@ -64,6 +65,7 @@ export default function main (ctx: Koa.Context): void {
     styleTags
   } = render(renderProps, renderCtx)
 
+  ctx.set(CONTENT_LANGUAGE_HEADER, lang)
   ctx.render('main.njk', {
     basePath: mainBasePath,
     bodyContent: content,

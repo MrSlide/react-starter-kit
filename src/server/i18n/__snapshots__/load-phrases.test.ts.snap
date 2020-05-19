@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`i18n phrase loading loads all phrases with extended translations by default 1`] = `
+Object {
+  "en": Object {
+    "testA": Object {
+      "greeting": "Hello, World",
+      "test": "This is a test",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+  "en-GB": Object {
+    "testA": Object {
+      "greeting": "Good day, World",
+      "test": "This is a test",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+  "pt-PT": Object {
+    "testA": Object {
+      "greeting": "Olá, Mundo",
+      "test": "Isto é um teste",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+}
+`;
+
+exports[`i18n phrase loading loads all phrases with extended translations if given an empty list of enabled languages 1`] = `
+Object {
+  "en": Object {
+    "testA": Object {
+      "greeting": "Hello, World",
+      "test": "This is a test",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+  "en-GB": Object {
+    "testA": Object {
+      "greeting": "Good day, World",
+      "test": "This is a test",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+  "pt-PT": Object {
+    "testA": Object {
+      "greeting": "Olá, Mundo",
+      "test": "Isto é um teste",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+}
+`;
+
+exports[`i18n phrase loading loads the enabled language phrases with extended translations 1`] = `
+Object {
+  "en-GB": Object {
+    "testA": Object {
+      "greeting": "Good day, World",
+      "test": "This is a test",
+    },
+    "testB": Object {
+      "bar": "Bar",
+      "foo": "Foo",
+    },
+  },
+}
+`;

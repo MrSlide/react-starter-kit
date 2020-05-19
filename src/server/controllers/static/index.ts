@@ -1,6 +1,6 @@
 import send from 'koa-send'
 import etag from 'etag'
-import { ETAG_HEADER } from '../../../common/constants/headers'
+import { ETAG_HEADER } from '../../constants/headers'
 import { STATIC_ASSETS_PATH } from '../../constants/paths'
 import type http from 'http'
 import type fs from 'fs'
