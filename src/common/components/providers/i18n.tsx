@@ -4,48 +4,46 @@ import { getComponentName } from '../../utils/react'
 import type {
   ComponentType,
   FunctionComponent,
-  ReactElement,
-  ReactNode
+  PropsWithChildren,
+  ReactElement
 } from 'react'
 import { IS_DEV } from '../../constants/env'
-import type { createT } from '../../utils/i18n'
+import type Polyglot from 'node-polyglot'
 
-type t = ReturnType<typeof createT>
+type t = Polyglot['t']
 
 export interface WithTProps {
   readonly t: t
 }
 
-interface ProviderProps extends WithTProps {
-  readonly children: ReactNode
-}
-
 const I18nContext = createContext(null)
-
-I18nContext.displayName = 'I18n'
 
 /**
  * Provides an i18n context.
  *
  * @param props - Component props.
  */
-export default function I18nProvider (props: ProviderProps): ReactElement {
+export default function I18nProvider (props: PropsWithChildren<WithTProps>): ReactElement {
   const { children, t } = props
 
   return <I18nContext.Provider value={t}>{children}</I18nContext.Provider>
 }
 
+I18nProvider.displayName = 'I18nProvider'
+
 /**
  * Gives a component a translation function `t`.
  *
- * @param WrappedComponent - The component to wrap.
+ * @param Component - The component to wrap.
  */
-export function withT<T> (WrappedComponent: ComponentType<T>): FunctionComponent {
-  function WithT (props): ReactElement {
+export function withT <T extends WithTProps, W = Omit<T, 't'>> (WrappedComponent: ComponentType<T>): FunctionComponent<W> {
+  function WithT (props: W): ReactElement {
     return (
       <I18nContext.Consumer>
         {function (t: t) {
-          return <WrappedComponent t={t} {...(props as T)} />
+          const newProps = ({ ...props, t } as unknown) as T
+
+          return <WrappedComponent {...newProps} />
         }}
       </I18nContext.Consumer>
     )
@@ -55,6 +53,7 @@ export function withT<T> (WrappedComponent: ComponentType<T>): FunctionComponent
 
   if (IS_DEV) {
     WithT.displayName = `withT(${getComponentName(WrappedComponent)})`
+    WithT.WrappedComponent = WrappedComponent
   }
 
   return WithT
